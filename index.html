@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent's Skincare Routine</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --stone: #c8bfb0;
+    --clay: #a89880;
+    --deep: #2c2520;
+    --charcoal: #3d3530;
+    --morning: #e8c87a;
+    --morning-soft: #f5e8c0;
+    --rest: #8fb89a;
+    --rest-soft: #d4e8da;
+    --active: #7a9ec8;
+    --active-soft: #ccdaec;
+    --retinol: #c87aa0;
+    --retinol-soft: #ecd4e0;
+    --transition: #c8a07a;
+    --transition-soft: #ecddd0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep);
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--stone);
+    padding-bottom: 40px;
+    margin-bottom: 50px;
+  }
+
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--deep);
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .header-sub {
+    margin-top: 16px;
+    color: var(--clay);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ALERT BOX */
+  .alert {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    border-left: 3px solid var(--clay);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 12px;
+  }
+
+  .alert-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 10px;
+  }
+
+  .alert p + p { margin-top: 8px; }
+
+  /* SECTION HEADINGS */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-label h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .section-label .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: var(--stone);
+  }
+
+  /* MORNING CARD */
+  .morning-block {
+    background: var(--morning-soft);
+    border: 1px solid #ddd0a0;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .morning-block::before {
+    content: '☀';
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 20px;
+    opacity: 0.3;
+  }
+
+  /* DAY CARDS */
+  .day-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .day-card {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .day-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .day-card.rest::after { background: var(--rest); }
+  .day-card.active::after { background: var(--active); }
+  .day-card.retinol::after { background: var(--retinol); }
+  .day-card.double::after { background: linear-gradient(to bottom, var(--active) 50%, var(--retinol) 50%); }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .day-name {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .day-type {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .day-type.rest-color { color: var(--rest); filter: brightness(0.7); }
+  .day-type.active-color { color: var(--active); filter: brightness(0.7); }
+  .day-type.retinol-color { color: var(--retinol); filter: brightness(0.7); }
+
+  /* STEPS */
+  .steps { list-style: none; }
+
+  .steps li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+    font-size: 12px;
+  }
+
+  .steps li:last-child { border-bottom: none; }
+
+  .step-num {
+    color: var(--clay);
+    font-size: 10px;
+    padding-top: 2px;
+  }
+
+  .step-body { }
+
+  .step-product {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+
+  .step-note {
+    color: var(--clay);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .step-note.warn {
+    color: #b05030;
+  }
+
+  .step-note.tip {
+    color: #507050;
+  }
+
+  .step-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .badge-new { background: #e8d4b8; color: #806040; }
+  .badge-transition { background: #d4e4d4; color: #407040; }
+  .badge-active { background: #d4dce8; color: #405070; }
+  .badge-key { background: #e8d4e0; color: #705060; }
+  .badge-finish { background: #f0e4c8; color: #806830; }
+
+  /* TRANSITION NOTES */
+  .transitions {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+
+  .transition-item {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+    font-size: 12px;
+  }
+
+  .transition-item:last-child { border-bottom: none; }
+
+  .t-from { color: var(--charcoal); }
+  .t-arrow { color: var(--stone); font-size: 16px; }
+  .t-to { color: var(--charcoal); font-weight: 500; }
+  .t-note { grid-column: 1 / -1; color: var(--clay); font-size: 11px; padding-top: 2px; }
+
+  /* PRODUCT INTEL */
+  .product-intel {
+    margin-bottom: 40px;
+  }
+
+  .intel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .intel-card {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    padding: 18px 20px;
+  }
+
+  .intel-card h4 {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 8px;
+  }
+
+  .intel-card p {
+    font-size: 11px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.08);
+    font-size: 12px;
+  }
+
+  .timeline-row:last-child { border-bottom: none; }
+
+  .t-weeks {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--clay);
+    font-style: italic;
+  }
+
+  .t-outcomes { color: var(--charcoal); }
+
+  /* CHECKLIST */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .check-week {
+    background: var(--warm-white);
+    border: 1px solid var(--stone);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+  }
+
+  .check-box {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--stone);
+    flex-shrink: 0;
+  }
+
+  .check-week.milestone {
+    border-color: var(--retinol);
+    background: var(--retinol-soft);
+  }
+
+  .check-week.milestone .check-box {
+    border-color: var(--retinol);
+  }
+
+  /* RULES */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .rules-card {
+    padding: 22px 24px;
+    border: 1px solid var(--stone);
+  }
+
+  .rules-card.green { background: var(--rest-soft); border-color: #8fb89a; }
+  .rules-card.red { background: #f5e0d8; border-color: #c89080; }
+
+  .rules-card h3 {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .rules-card.green h3 { color: #407050; }
+  .rules-card.red h3 { color: #804030; }
+
+  .rule-item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 11px;
+  }
+
+  .rule-icon { flex-shrink: 0; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--stone);
+    padding-top: 24px;
+    font-size: 10px;
+    color: var(--clay);
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* UTILITY */
+  .mb-40 { margin-bottom: 40px; }
+  .mb-16 { margin-bottom: 16px; }
+
+  .phase-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+
+  .phase-label:first-of-type { margin-top: 0; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-label">Personal Skincare Protocol — Updated May 2026</div>
+    <h1>Vincent's<br><em>Skin Routine</em></h1>
+    <div class="header-sub">Restarted after barrier break · Pore refinement focus · Gradual active reintroduction</div>
+  </div>
+
+  <!-- CONTEXT ALERT -->
+  <div class="alert mb-40">
+    <div class="alert-title">⚠ Restart Context</div>
+    <p>Your skin barrier was compromised by an allergic reaction. You're mostly recovered but still slightly sensitive. The retinol and salicylic acid schedules restart from Week 1 — don't rush them. The new products have been integrated in a way that supports barrier recovery first, then active performance.</p>
+    <p>Stock note: ~12ml Glow Deep Serum · ~15ml Hyaluronic Acid · ~30ml Retinol 0.2% · ~8ml Salicylic Acid 2%</p>
+  </div>
+
+  <!-- MORNING -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--morning)"></div>
+    <h2>Every Morning</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="morning-block mb-40">
+    <ol class="steps">
+      <li>
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <div class="step-product">Shower + Shave</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <div class="step-product">Beauty of Joseon Ginseng Essence Water <span class="step-badge badge-new">NEW</span></div>
+          <div class="step-note tip">Use this immediately after shower while skin is damp. Apply to face + pat in. This replaces the role of the Saccharomyces toner in the morning — it's lighter and preps skin better pre-serum. The fermented ginseng supports collagen and brightness.</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <div class="step-body">
+          <div class="step-product">Skin1004 Centella Tone Brightening Capsule Ampoule <span class="step-badge badge-new">NEW</span></div>
+          <div class="step-note tip">3–4 drops, press into skin. Excellent for post-barrier-break recovery. Centella accelerates barrier repair, reduces redness, and the brightening effect targets uneven tone. Will make a visible difference within 4–6 weeks.</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <div class="step-body">
+          <div class="step-product">Beauty of Joseon Glow Deep Serum <span class="step-badge badge-finish">Finish first</span></div>
+          <div class="step-note">~12ml remaining. Continue until finished, then replace with the Revive Serum (Ginseng + Snail Mucin) — a meaningful upgrade for firming and pore texture.</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">05</span>
+        <div class="step-body">
+          <div class="step-product">Beauty of Joseon Dynasty Cream <span class="step-badge badge-new">NEW</span></div>
+          <div class="step-note tip">Replace CeraVe in the morning with this. Dynasty Cream is richer in skin-identical ingredients and fermented ginseng — better synergy with the rest of your routine. CeraVe moves to evenings only where it does barrier-seal work.</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">06</span>
+        <div class="step-body">
+          <div class="step-product">Beauty of Joseon Relief Sun SPF50+</div>
+          <div class="step-note warn">Non-negotiable. Retinol and SA make skin photosensitive. Always last step.</div>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">07</span>
+        <div class="step-body">
+          <div class="step-product">Brush Teeth</div>
+          <div class="step-note">Do this after SPF if possible — toothpaste residue around the mouth can interfere with actives.</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- EVENING -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--charcoal)"></div>
+    <h2>Evening Schedule</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="day-grid mb-40">
+
+    <!-- MONDAY -->
+    <div class="day-card rest">
+      <div class="day-header">
+        <span class="day-name">Monday</span>
+        <span class="day-type rest-color">Barrier Recovery Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Beauty of Joseon Radiance Cleansing Balm <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">Use this as your first cleanse on days you've worn SPF. Massage onto dry face, emulsify with water, rinse. Far superior for SPF removal than the Squalane Cleanser alone. Finish the Squalane Cleanser on SPF-free evenings or double-cleanse nights.</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Beauty of Joseon Green Plum Refreshing Cleanser <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">Second cleanse. This is your new everyday cleanser — replaces The Ordinary Squalane Cleanser. AHA content gently resurfaces while the green plum brightens. Mild enough for daily use, especially good for pores. Use The Ordinary Squalane Cleanser until finished, then switch permanently to this.</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">Beauty of Joseon Ginseng Essence Water <span class="step-badge badge-new">NEW</span></div><div class="step-note">Pat in while skin is damp.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">Beauty of Joseon Calming Serum (Green Tea + Panthenol) <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">This is your Monday hero. Green tea is one of the best antioxidants in skincare. Panthenol (pro-vitamin B5) repairs and hydrates deeply. Perfect for your "barrier recovery" night — this actively rebuilds what was lost.</div></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div><div class="step-note">Seal everything in. Ceramides lock in all the good work above.</div></div></li>
+      </ol>
+    </div>
+
+    <!-- TUESDAY -->
+    <div class="day-card active">
+      <div class="day-header">
+        <span class="day-name">Tuesday</span>
+        <span class="day-type active-color">Salicylic Acid Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div><div class="step-note">Double cleanse as above.</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">The Ordinary Salicylic Acid 2% Solution <span class="step-badge badge-active">ACTIVE</span></div><div class="step-note warn">Pore-prone areas only: nose, inner cheeks, chin. ~8ml remaining — use judiciously. When finished, the Green Plum Cleanser provides mild ongoing exfoliation as a daily maintenance replacement.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">Beauty of Joseon Calming Serum <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">Apply after SA. The panthenol neutralises irritation from the acid and keeps the barrier intact. This pairing is unusually smart — acid clears, B5 repairs.</div></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div></div></li>
+      </ol>
+    </div>
+
+    <!-- WEDNESDAY -->
+    <div class="day-card rest">
+      <div class="day-header">
+        <span class="day-name">Wednesday</span>
+        <span class="day-type rest-color">Hydration + Glow Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">Skin1004 Centella Ampoule <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">Centella works while you sleep. Especially valuable mid-week after Tuesday's acid night — it calms, repairs, and brightens overnight.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">The Ordinary Hyaluronic Acid 2%</div><div class="step-note">~15ml remaining. Apply to slightly damp skin. When finished, the Ginseng Essence Water and Dynasty Cream cover hydration sufficiently — no replacement needed.</div></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div></div></li>
+      </ol>
+    </div>
+
+    <!-- THURSDAY -->
+    <div class="day-card retinol">
+      <div class="day-header">
+        <span class="day-name">Thursday</span>
+        <span class="day-type retinol-color">Retinol Night ✦</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream (thin layer)</div><div class="step-note tip">Buffering layer. Apply before retinol — reduces irritation significantly while you rebuild tolerance post-barrier-break.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">The Ordinary Retinol 0.2% in Squalane <span class="step-badge badge-key">KEY</span></div><div class="step-note warn">Pea-sized amount. Spread thinly. Avoid eye corners and mouth. Restarting from Week 1 — do not skip the buffer moisturiser underneath for at least 4 weeks.</div></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><div class="step-product">Second light layer CeraVe (optional)</div><div class="step-note">Only if skin feels dry or tight after retinol.</div></div></li>
+      </ol>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="day-card rest">
+      <div class="day-header">
+        <span class="day-name">Friday</span>
+        <span class="day-type rest-color">Rest + Calming Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">Beauty of Joseon Calming Serum (Green Tea + Panthenol)</div><div class="step-note tip">Post-retinol day — this is intentional. Friday's calming serum soothes any lingering sensitivity from Thursday's retinol.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div></div></li>
+      </ol>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-card active">
+      <div class="day-header">
+        <span class="day-name">Saturday</span>
+        <span class="day-type active-color">Salicylic Acid Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">The Ordinary Salicylic Acid 2% Solution</div><div class="step-note warn">Pore-prone areas only. Use sparingly — 8ml won't last long at 2× per week.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">Beauty of Joseon Calming Serum</div><div class="step-note">Same logic as Tuesday — B5 after acid.</div></div></li>
+        <li><span class="step-num">05</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div></div></li>
+      </ol>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-card rest">
+      <div class="day-header">
+        <span class="day-name">Sunday</span>
+        <span class="day-type rest-color">Full Recovery Night</span>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">01</span><div class="step-body"><div class="step-product">Radiance Cleansing Balm → Green Plum Cleanser</div></div></li>
+        <li><span class="step-num">02</span><div class="step-body"><div class="step-product">Ginseng Essence Water</div></div></li>
+        <li><span class="step-num">03</span><div class="step-body"><div class="step-product">Beauty of Joseon Revive Serum (Ginseng + Snail Mucin) <span class="step-badge badge-new">NEW</span></div><div class="step-note tip">Sunday's hero product. Snail mucin is one of the few ingredients with solid evidence for pore appearance improvement, skin texture, and mild collagen support. Use it here as your weekly deep-repair treatment. When the Glow Deep Serum is finished, the Revive Serum also moves to the daily morning routine.</div></div></li>
+        <li><span class="step-num">04</span><div class="step-body"><div class="step-product">CeraVe Moisturising Cream</div></div></li>
+      </ol>
+    </div>
+
+  </div>
+
+  <!-- PRODUCT TRANSITIONS -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--transition)"></div>
+    <h2>Product Transitions</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="transitions mb-40">
+    <div class="transition-item">
+      <span class="t-from">The Ordinary Squalane Cleanser</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">BoJ Green Plum Refreshing Cleanser</span>
+      <span class="t-note">Use Squalane Cleanser until empty (evenings only, as second cleanse on no-SPF days). Then switch permanently to Green Plum. The Green Plum is a straight upgrade — gentler, with mild exfoliation and brightening.</span>
+    </div>
+    <div class="transition-item">
+      <span class="t-from">BoJ Glow Deep Serum (AM)</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">BoJ Revive Serum (Ginseng + Snail Mucin)</span>
+      <span class="t-note">~12ml remaining in Glow Deep Serum. Finish it in the morning slot (step 04). When empty, promote the Revive Serum from Sunday-only to daily morning use. This is a meaningful upgrade for firmness, texture, and pore appearance.</span>
+    </div>
+    <div class="transition-item">
+      <span class="t-from">CeraVe (AM moisturiser)</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">BoJ Dynasty Cream (AM moisturiser)</span>
+      <span class="t-note">Immediate switch. Dynasty Cream takes the morning slot. CeraVe stays in evening routine permanently — it's ideal as a barrier-seal moisturiser for after actives.</span>
+    </div>
+    <div class="transition-item">
+      <span class="t-from">The Ordinary Hyaluronic Acid</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">No direct replacement needed</span>
+      <span class="t-note">~15ml remaining. Use Wednesday evenings. When finished, the Ginseng Essence Water + Dynasty Cream cover hydration sufficiently. You can optionally add the Calming Serum on Wednesdays in its place.</span>
+    </div>
+    <div class="transition-item">
+      <span class="t-from">The Ordinary Salicylic Acid 2%</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">Green Plum Cleanser (maintenance)</span>
+      <span class="t-note">~8ml at 2× weekly = roughly 4–6 weeks supply. When finished, the AHAs in the Green Plum Cleanser provide daily mild exfoliation as maintenance. You may want to repurchase the SA if pores feel like they need it still.</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT INTEL -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--deep)"></div>
+    <h2>Why These Products Work Together</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="intel-grid mb-40">
+    <div class="intel-card">
+      <h4>Skin1004 Centella Ampoule</h4>
+      <p>Madecassoside + asiaticoside = the two compounds in centella with the most evidence for barrier repair and redness reduction. The "tone brightening" element comes from niacinamide and tranexamic acid. Excellent post-barrier-break addition. Use morning and Wednesday PM.</p>
+    </div>
+    <div class="intel-card">
+      <h4>BoJ Calming Serum (Green Tea + Panthenol)</h4>
+      <p>Panthenol (B5) is a humectant that also accelerates wound healing — it's unusually good paired with actives. Green tea's EGCG is a proven antioxidant. Pairing this after SA nights is genuinely smart skincare, not just filler. Also perfect for post-retinol recovery (Friday).</p>
+    </div>
+    <div class="intel-card">
+      <h4>BoJ Revive Serum (Ginseng + Snail Mucin)</h4>
+      <p>Snail secretion filtrate has decent evidence for pore appearance, skin texture smoothing, and mild collagen stimulation. Ginseng is your collagen/firming ingredient. This is the "weird but actually works" product in your lineup — it earns its Sunday slot and eventually the daily AM slot.</p>
+    </div>
+    <div class="intel-card">
+      <h4>BoJ Radiance Cleansing Balm</h4>
+      <p>Oil-based first cleanse is the correct method for dissolving SPF and sebum without disrupting the barrier. Your previous routine skipped this step — which means some SPF residue was likely sitting on skin all night, reducing the efficacy of everything applied after. This fixes that.</p>
+    </div>
+    <div class="intel-card">
+      <h4>BoJ Ginseng Essence Water</h4>
+      <p>Replaces the Saccharomyces toner in both AM and PM. Slightly more active — fermented ginseng + niacinamide combo addresses brightness and early signs of aging simultaneously. The "essence" texture absorbs faster and prepares skin better for serums than a standard toner.</p>
+    </div>
+    <div class="intel-card">
+      <h4>BoJ Dynasty Cream</h4>
+      <p>Morning moisturiser upgrade. Contains ginseng root extract, niacinamide, and a lipid-rich base that's closer to your skin's natural structure than CeraVe. Better synergy with the rest of your K-beauty lineup. CeraVe stays in the evenings — ceramides excel at barrier-sealing after actives.</p>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--clay)"></div>
+    <h2>Realistic Expectations</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="timeline mb-40">
+    <div class="timeline-row">
+      <div class="t-weeks">Wks 1–2</div>
+      <div class="t-outcomes">Barrier feels more stable. Less post-shave sensitivity. Skin looks calmer. Centella starts reducing redness.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="t-weeks">Wks 2–4</div>
+      <div class="t-outcomes">Texture improves noticeably. Pores look less inflamed. Ginseng Essence Water starts building a glow. Snail mucin smooths surface.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="t-weeks">Wks 4–8</div>
+      <div class="t-outcomes">SA keeps pores clear. Retinol begins real texture work — fine lines around nose reduce. Centella tone brightening becomes visible.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="t-weeks">Wks 8–12</div>
+      <div class="t-outcomes">Assess retinol increase. Skin looks more "polished." Pore depth visibly reduced. Snail mucin has had time to work on any acne marks.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="t-weeks">12+ wks</div>
+      <div class="t-outcomes">This is when the full stack pays off. The combination of retinol (cell turnover), SA (pore clearing), snail mucin (texture), and ginseng (collagen) is genuinely comprehensive for your concerns.</div>
+    </div>
+    <div class="timeline-row">
+      <div class="t-weeks">Skin laxity</div>
+      <div class="t-outcomes">Honest note: the "tighter skin" feeling you're after relates to subcutaneous structure. Topicals cannot change fat distribution. Retinol + ginseng + snail mucin will improve skin quality and firmness at the surface level — which is visible and worthwhile — but for deeper laxity, that's beyond what any routine can address.</div>
+    </div>
+  </div>
+
+  <!-- WEEK CHECKLIST -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--stone)"></div>
+    <h2>Progress Tracker</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="checklist-grid mb-40">
+    <div class="check-week"><div class="check-box"></div>Week 1 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 2 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 3 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 4 complete — retinol buffer optional to remove</div>
+    <div class="check-week"><div class="check-box"></div>Week 5 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 6 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 7 complete</div>
+    <div class="check-week milestone"><div class="check-box"></div>✦ Week 8 — Retinol increase assessment</div>
+    <div class="check-week"><div class="check-box"></div>Week 9 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 10 complete</div>
+    <div class="check-week"><div class="check-box"></div>Week 11 complete</div>
+    <div class="check-week milestone"><div class="check-box"></div>✦ Week 12 — Full routine review</div>
+  </div>
+
+  <!-- RULES -->
+  <div class="section-label">
+    <div class="dot" style="background:var(--clay)"></div>
+    <h2>Adjustment Rules</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="rules-grid mb-40">
+    <div class="rules-card green">
+      <h3>✅ Green lights — can increase retinol to 2×/week</h3>
+      <div class="rule-item"><span class="rule-icon">○</span><span>No stinging on application</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>No peeling or flaking</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>No lingering redness after shaving</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Skin feels normal the next morning</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Moisturiser feels "enough"</span></div>
+    </div>
+    <div class="rules-card red">
+      <h3>❌ Red flags — do not increase yet</h3>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Burning or warmth after retinol</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Tightness lasting into next morning</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Flakes around nose or mouth</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Shaving suddenly stings more</span></div>
+      <div class="rule-item"><span class="rule-icon">○</span><span>Skin looks shiny but feels sore</span></div>
+    </div>
+  </div>
+
+  <!-- GENERAL RULES -->
+  <div class="alert mb-40">
+    <div class="alert-title">General Rules</div>
+    <p>If skin stings or flakes → skip retinol for 1–2 weeks and lean on Calming Serum + CeraVe only.</p>
+    <p>If SA runs out and pores worsen → repurchase, or consider Paula's Choice 2% BHA as a longer-term option (more economical per ml).</p>
+    <p>Never use retinol and SA on the same night. The current schedule keeps them separated correctly.</p>
+    <p>Vitamin C and retinol are not in this routine — if you want to add a Vitamin C serum in future, it belongs in the morning before SPF and pairs well with the Centella ampoule.</p>
+  </div>
+
+  <div class="footer">
+    <span>Vincent's Skin Routine · Updated May 2026</span>
+    <span>Restarted post-barrier-break · Week 1</span>
+  </div>
+
+</div>
+</body>
+</html>
