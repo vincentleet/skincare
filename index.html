@@ -32,35 +32,35 @@
     color: var(--deep);
     font-family: 'DM Mono', monospace;
     font-weight: 300;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.7;
     min-height: 100vh;
   }
 
   .page {
-    max-width: 860px;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 60px 40px;
+    padding: 75px 50px;
   }
 
   /* HEADER */
   .header {
     border-bottom: 1px solid var(--stone);
-    padding-bottom: 40px;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 62px;
   }
 
   .header-label {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--clay);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
   }
 
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
+    font-size: 66px;
     font-weight: 300;
     line-height: 1.1;
     letter-spacing: -0.01em;
@@ -73,9 +73,9 @@
   }
 
   .header-sub {
-    margin-top: 16px;
+    margin-top: 20px;
     color: var(--clay);
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 0.1em;
   }
 
@@ -84,39 +84,39 @@
     background: var(--warm-white);
     border: 1px solid var(--stone);
     border-left: 3px solid var(--clay);
-    padding: 20px 24px;
-    margin-bottom: 40px;
-    font-size: 12px;
+    padding: 25px 30px;
+    margin-bottom: 50px;
+    font-size: 15px;
   }
 
   .alert-title {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--clay);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
-  .alert p + p { margin-top: 8px; }
+  .alert p + p { margin-top: 10px; }
 
   /* SECTION HEADINGS */
   .section-label {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 20px;
+    margin-bottom: 30px;
   }
 
   .section-label h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: 400;
     letter-spacing: 0.02em;
   }
 
   .section-label .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -131,31 +131,31 @@
   .morning-block {
     background: var(--morning-soft);
     border: 1px solid #ddd0a0;
-    padding: 28px 32px;
-    margin-bottom: 16px;
+    padding: 35px 40px;
+    margin-bottom: 20px;
     position: relative;
   }
 
   .morning-block::before {
     content: '☀';
     position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 20px;
+    top: 25px;
+    right: 30px;
+    font-size: 25px;
     opacity: 0.3;
   }
 
   /* DAY CARDS */
   .day-grid {
     display: grid;
-    gap: 12px;
-    margin-bottom: 40px;
+    gap: 15px;
+    margin-bottom: 50px;
   }
 
   .day-card {
     background: var(--warm-white);
     border: 1px solid var(--stone);
-    padding: 24px 28px;
+    padding: 30px 35px;
     position: relative;
     overflow: hidden;
   }
@@ -166,7 +166,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 3px;
+    width: 4px;
   }
 
   .day-card.rest::after { background: var(--rest); }
@@ -177,14 +177,14 @@
   .day-header {
     display: flex;
     align-items: baseline;
-    gap: 12px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid var(--stone);
   }
 
   .day-name {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     font-weight: 500;
@@ -192,7 +192,7 @@
 
   .day-type {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 22px;
     font-style: italic;
     color: var(--clay);
   }
@@ -206,18 +206,18 @@
 
   .steps li {
     display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: 8px;
-    padding: 5px 0;
+    grid-template-columns: 26px 1fr;
+    gap: 10px;
+    padding: 7px 0;
     border-bottom: 1px dashed rgba(0,0,0,0.06);
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .steps li:last-child { border-bottom: none; }
 
   .step-num {
     color: var(--clay);
-    font-size: 10px;
+    font-size: 12px;
     padding-top: 2px;
   }
 
@@ -230,8 +230,8 @@
 
   .step-note {
     color: var(--clay);
-    font-size: 11px;
-    margin-top: 2px;
+    font-size: 13px;
+    margin-top: 3px;
   }
 
   .step-note.warn {
@@ -244,12 +244,12 @@
 
   .step-badge {
     display: inline-block;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 1px 6px;
+    padding: 2px 8px;
     border-radius: 2px;
-    margin-left: 6px;
+    margin-left: 8px;
     vertical-align: middle;
   }
 
@@ -263,54 +263,54 @@
   .transitions {
     background: var(--warm-white);
     border: 1px solid var(--stone);
-    padding: 28px 32px;
-    margin-bottom: 40px;
+    padding: 35px 40px;
+    margin-bottom: 50px;
   }
 
   .transition-item {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 12px;
+    gap: 15px;
     align-items: center;
-    padding: 10px 0;
+    padding: 13px 0;
     border-bottom: 1px dashed rgba(0,0,0,0.08);
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .transition-item:last-child { border-bottom: none; }
 
   .t-from { color: var(--charcoal); }
-  .t-arrow { color: var(--stone); font-size: 16px; }
+  .t-arrow { color: var(--stone); font-size: 20px; }
   .t-to { color: var(--charcoal); font-weight: 500; }
-  .t-note { grid-column: 1 / -1; color: var(--clay); font-size: 11px; padding-top: 2px; }
+  .t-note { grid-column: 1 / -1; color: var(--clay); font-size: 13px; padding-top: 2px; }
 
   /* PRODUCT INTEL */
   .product-intel {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   }
 
   .intel-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 15px;
   }
 
   .intel-card {
     background: var(--warm-white);
     border: 1px solid var(--stone);
-    padding: 18px 20px;
+    padding: 22px 25px;
   }
 
   .intel-card h4 {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--clay);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .intel-card p {
-    font-size: 11px;
+    font-size: 14px;
     color: var(--charcoal);
     line-height: 1.6;
   }
@@ -319,24 +319,24 @@
   .timeline {
     background: var(--warm-white);
     border: 1px solid var(--stone);
-    padding: 28px 32px;
-    margin-bottom: 40px;
+    padding: 35px 40px;
+    margin-bottom: 50px;
   }
 
   .timeline-row {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 20px;
-    padding: 12px 0;
+    grid-template-columns: 125px 1fr;
+    gap: 25px;
+    padding: 15px 0;
     border-bottom: 1px dashed rgba(0,0,0,0.08);
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .timeline-row:last-child { border-bottom: none; }
 
   .t-weeks {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
+    font-size: 21px;
     color: var(--clay);
     font-style: italic;
   }
@@ -347,23 +347,23 @@
   .checklist-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-bottom: 50px;
   }
 
   .check-week {
     background: var(--warm-white);
     border: 1px solid var(--stone);
-    padding: 10px 14px;
+    padding: 13px 18px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 11px;
+    gap: 13px;
+    font-size: 14px;
   }
 
   .check-box {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
     border: 1px solid var(--stone);
     flex-shrink: 0;
   }
@@ -381,12 +381,12 @@
   .rules-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 40px;
+    gap: 20px;
+    margin-bottom: 50px;
   }
 
   .rules-card {
-    padding: 22px 24px;
+    padding: 28px 30px;
     border: 1px solid var(--stone);
   }
 
@@ -394,10 +394,10 @@
   .rules-card.red { background: #f5e0d8; border-color: #c89080; }
 
   .rules-card h3 {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     font-weight: 500;
   }
 
@@ -406,9 +406,9 @@
 
   .rule-item {
     display: flex;
-    gap: 8px;
-    margin-bottom: 6px;
-    font-size: 11px;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
   }
 
   .rule-icon { flex-shrink: 0; }
@@ -416,8 +416,8 @@
   /* FOOTER */
   .footer {
     border-top: 1px solid var(--stone);
-    padding-top: 24px;
-    font-size: 10px;
+    padding-top: 30px;
+    font-size: 13px;
     color: var(--clay);
     letter-spacing: 0.1em;
     display: flex;
@@ -425,16 +425,16 @@
   }
 
   /* UTILITY */
-  .mb-40 { margin-bottom: 40px; }
-  .mb-16 { margin-bottom: 16px; }
+  .mb-40 { margin-bottom: 50px; }
+  .mb-16 { margin-bottom: 20px; }
 
   .phase-label {
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--clay);
-    margin-bottom: 10px;
-    margin-top: 28px;
+    margin-bottom: 13px;
+    margin-top: 35px;
   }
 
   .phase-label:first-of-type { margin-top: 0; }
@@ -448,8 +448,8 @@
   .skin-today {
     background: var(--deep);
     color: var(--cream);
-    padding: 36px 40px;
-    margin-bottom: 50px;
+    padding: 45px 50px;
+    margin-bottom: 62px;
     position: relative;
     overflow: hidden;
   }
@@ -466,14 +466,14 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 28px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 15px;
   }
 
   .today-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 300;
     letter-spacing: 0.01em;
     color: var(--cream);
@@ -486,7 +486,7 @@
 
   .today-controls {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
     flex-wrap: wrap;
   }
@@ -496,9 +496,9 @@
     border: 1px solid rgba(255,255,255,0.15);
     color: var(--cream);
     font-family: 'DM Mono', monospace;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 300;
-    padding: 7px 12px;
+    padding: 9px 15px;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -520,9 +520,9 @@
     border: 1px solid rgba(232,200,122,0.35);
     color: var(--morning);
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
-    padding: 7px 14px;
+    padding: 9px 18px;
     cursor: pointer;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -534,28 +534,28 @@
   }
 
   .today-context {
-    font-size: 11px;
+    font-size: 14px;
     color: rgba(200,191,176,0.7);
-    margin-bottom: 24px;
+    margin-bottom: 30px;
     letter-spacing: 0.05em;
-    min-height: 18px;
+    min-height: 22px;
   }
 
   /* Session tabs */
   .session-tabs {
     display: flex;
-    gap: 4px;
-    margin-bottom: 24px;
+    gap: 5px;
+    margin-bottom: 30px;
   }
 
   .session-tab {
     flex: 1;
-    padding: 10px 16px;
+    padding: 13px 20px;
     border: 1px solid rgba(255,255,255,0.1);
     background: transparent;
     color: rgba(200,191,176,0.5);
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
@@ -595,8 +595,8 @@
   .today-step {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    padding: 12px 14px;
+    gap: 18px;
+    padding: 15px 18px;
     border: 1px solid transparent;
     cursor: pointer;
     transition: all 0.15s;
@@ -628,8 +628,8 @@
   }
 
   .ts-checkbox {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border: 1px solid rgba(200,191,176,0.3);
     flex-shrink: 0;
     margin-top: 2px;
@@ -637,7 +637,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.15s;
-    font-size: 10px;
+    font-size: 13px;
     color: var(--morning);
   }
 
@@ -647,16 +647,16 @@
   }
 
   .ts-num {
-    font-size: 10px;
+    font-size: 13px;
     color: rgba(200,191,176,0.4);
     flex-shrink: 0;
-    min-width: 18px;
+    min-width: 22px;
     padding-top: 1px;
     font-weight: 400;
   }
 
   .ts-product {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--cream);
     line-height: 1.4;
@@ -665,12 +665,12 @@
 
   .ts-badge {
     display: inline-block;
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 1px 5px;
+    padding: 2px 7px;
     border-radius: 2px;
-    margin-left: 6px;
+    margin-left: 8px;
     vertical-align: middle;
   }
 
@@ -680,9 +680,9 @@
   .ts-badge-new    { background: rgba(200,191,176,0.12); color: #a89880; }
 
   .ts-note {
-    font-size: 10px;
+    font-size: 13px;
     color: rgba(200,191,176,0.45);
-    margin-top: 3px;
+    margin-top: 4px;
     line-height: 1.5;
     transition: all 0.2s;
   }
@@ -692,10 +692,10 @@
 
   /* Progress bar */
   .today-progress {
-    margin-top: 24px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
   }
 
   .progress-track {
@@ -717,11 +717,11 @@
   }
 
   .progress-label {
-    font-size: 10px;
+    font-size: 13px;
     color: rgba(200,191,176,0.5);
     letter-spacing: 0.1em;
     white-space: nowrap;
-    min-width: 70px;
+    min-width: 88px;
     text-align: right;
   }
 
@@ -734,12 +734,12 @@
     border: none;
     color: rgba(200,191,176,0.3);
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     cursor: pointer;
     padding: 0;
-    margin-top: 12px;
+    margin-top: 15px;
     display: block;
     transition: color 0.15s;
   }
@@ -747,21 +747,20 @@
   .today-reset:hover { color: rgba(200,191,176,0.7); }
 
   .today-empty {
-    font-size: 12px;
     color: rgba(200,191,176,0.4);
     text-align: center;
-    padding: 30px 0;
+    padding: 38px 0;
     font-style: italic;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .done-message {
     display: none;
     text-align: center;
-    padding: 20px 0 8px;
+    padding: 25px 0 10px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: 28px;
     font-style: italic;
     color: var(--morning);
     letter-spacing: 0.02em;
@@ -774,7 +773,7 @@
   <!-- ══ SKIN TODAY ══ -->
   <div class="skin-today">
     <div class="today-header">
-      <div class="today-title">Skin <em>Today</em></div>
+      <div class="today-title">Skin <em>Now</em></div>
       <div class="today-controls">
         <select class="today-select" id="daySelect">
           <option value="0">Sunday</option>
