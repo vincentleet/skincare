@@ -43,6 +43,12 @@
     padding: 75px 50px;
   }
 
+  @media (max-width: 600px) {
+    .page {
+      padding: 0 24px 40px;
+    }
+  }
+
   /* HEADER */
   .header {
     border-bottom: 1px solid var(--stone);
@@ -450,8 +456,18 @@
     color: var(--cream);
     padding: 45px 50px;
     margin-bottom: 62px;
+    margin-left: -50px;
+    margin-right: -50px;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .skin-today {
+      padding: 36px 24px;
+      margin-left: -24px;
+      margin-right: -24px;
+    }
   }
 
   .skin-today::before {
